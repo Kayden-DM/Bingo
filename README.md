@@ -1,23 +1,50 @@
-Bingo
-A GUI Python game built with CustomTkinter where the player gets 5 random numbers and draws numbers one at a time, trying to mark all of theirs in as few draws as possible.
+## Bingo
+A desktop bingo game built with CustomTkinter. It draws random numbers from 1 to 99, highlights any that match the player's five numbers, and tracks how many draws it takes to mark them all.
 
-Concepts Used
-Sets — marked and all_drawn track drawn numbers efficiently and prevent repeats.
+## Features
+Random Board — Generates five unique player numbers from 1 to 99 using random.sample().
 
-Grid Layout — board_frame uses math.ceil(math.sqrt(...)) to build a roughly square button grid.
+Grid Layout — Arranges the player's numbers in a square grid sized with math.ceil(math.sqrt(...)).
 
-Widget Rebuilding — build_board() destroys and regenerates buttons on reset, stored in a board dict for lookup.
+Draw Numbers — Picks a random undrawn number each click and shows it in the history label.
 
-Features
-Random Player Board — 5 unique numbers from 1–99 are chosen via random.sample.
+Auto-Marking — Turns matching player numbers light green and adds them to the marked set.
 
-Draw & Mark System — each draw is checked against the player's numbers, turning matches green.
+Progress Counter — Displays how many numbers have been marked out of the total.
 
-Win Detection & Counter — when all numbers are marked, the game ends and reports how many draws it took.
+Win Detection — Ends the game and disables the Draw button when all player numbers are marked, showing the total draws taken.
 
-Improvements
-Rename numbers() — the function shadows the concept and reads oddly (numbers(5)); a name like pick_numbers() is clearer.
+Reset — Regenerates the board and clears all state for a fresh game.
 
-Show Full Draw History — only the latest draw is displayed; a scrolling list of past draws would make the game easier to follow.
+Exhausted Pool — Prints "All numbers drawn!" if every number from 1 to 99 has been drawn.
 
-Disable on Empty Pool — when all numbers are drawn, the message shows but draw_btn stays enabled; disable it alongside the win state.
+## Technologies Used
+text
+| Technology | Purpose |
+|---|---|
+| Python | Application logic |
+| `customtkinter` | Desktop GUI |
+| `random.sample()` | Generates unique player numbers |
+| `random.choice()` | Draws a random remaining number |
+| `math.ceil()` / `math.sqrt()` | Calculates grid columns |
+| `set` | Tracks marked and drawn numbers efficiently |
+| `global` | Updates game state across functions |
+| `.grid()` | Positions board buttons in a grid |
+<!-- -->
+## How to Use It
+Install Python 3.6 or newer from python.org and make sure it's added to your PATH.
+
+Install CustomTkinter by running pip install customtkinter.
+
+Save the code as bingo.py.
+
+Open a terminal in the folder containing the file.
+
+Run python bingo.py.
+
+Click Draw repeatedly until all five of your numbers are marked; use Reset to start a new game.
+
+## Improvements
+Show all drawn numbers — the history label only shows the most recent draw, so players can't see which numbers have already come up; keeping a list of drawn numbers and displaying them would make the game easier to follow.
+
+Add a board size option — the number of player numbers is hardcoded to 5 in reset(); letting the player choose (e.g. 3, 5, or 10) would add variety without much extra code.
